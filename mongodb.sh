@@ -32,16 +32,16 @@ cp mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Adding Mongo repo"
 
 dnf install mongodb-org -y &>>$LOG_FILE
-VALIDATE $? "INstalling Mongodb"
+VALIDATE $? "Installing MongoDB"
 
-systemctl enable mongodb &>>$LOG_FILE
+systemctl enable mongod &>>$LOG_FILE
 VALIDATE $? "Enable MongoDB"
 
-systemctl start mongodb
-VALIDATE $? "Enable MOngoDB"
+systemctl start mongod 
+VALIDATE $? "Start MongoDB"
 
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
-VALIDATE $> "Allowing remote connections to MongoDB"
+VALIDATE $? "Allowing remote connections to MongoDB"
 
 systemctl restart mongod
-VALIDATE $? "Restrted MongoDB"
+VALIDATE $? "Restarted MongoDB"
