@@ -39,3 +39,5 @@ VALIDATE $? "Enable MongoDB"
 
 systemctl start mongodb
 VALIDATE $? "Enable MOngoDB"
+
+sed -i 's/12
